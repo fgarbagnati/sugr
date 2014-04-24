@@ -48,6 +48,7 @@ end
 post '/signup' do
   @user = User.create(params)
   if @user.valid?
+    session[:id] = @user.id
     redirect "/account_page/#{@user.id}"
   else
     redirect "/signup"
