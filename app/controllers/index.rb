@@ -1,23 +1,23 @@
 get '/' do
   if session[:id]
     @user = User.find(session[:id])
-    redirect "/accountpage/#{@user.id}"
+    redirect "/account_page/#{@user.id}"
   else
-    redirect '/loginorsignup'
+    redirect '/login_or_signup'
   end
 end
 
-get '/accountpage/:id' do
+get '/account_page/:id' do
   if session[:id].to_s == params[:id].to_s
     @user = User.find(params[:id])
-    erb :accountpage
+    erb :account_page
   else
     redirect '/'
   end
 end
 
-get '/loginorsignup' do
-  erb :loginorsignup
+get '/login_or_signup' do
+  erb :login_or_signup
 end
 
 get '/login' do
@@ -30,7 +30,7 @@ post '/login' do
     redirect '/signup'
   elsif @user.password == params[:password]
     session[:id] = @user.id
-    redirect "/accountpage/#{@user.id}"
+    redirect "/account_page/#{@user.id}"
   else
     redirect '/signup'
   end
