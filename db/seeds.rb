@@ -1,5 +1,8 @@
-BANDNAMES = [ "Joy Division", "New Order", "The Smiths", "The Sisters of Mercy", "Wye Oak", "Thao and the Get Down Stay Down",
-          "Siouxsie and the Banshees", "Interpol", "Ted Leo and The Pharmacists", "The Impossibles", "The Promise Ring",
-          "Fugazi" ]
+require 'faker'
 
-BANDNAMES.each{ |band_name| Band.create(name: band_name) }
+10.times do
+  Morsel.create(
+    :user_id => rand(1..5),
+    :sweet => Faker::Lorem.words(5)
+  )
+end
