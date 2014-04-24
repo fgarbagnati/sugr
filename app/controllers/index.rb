@@ -22,8 +22,7 @@ post '/account_page/:id' do
 end
 
 get '/login_or_signup' do
-  @sweets = Morsel.all.last(10)
-  p @sweets
+  @sweets = Morsel.order("created_at DESC")
   erb :login_or_signup
 end
 
