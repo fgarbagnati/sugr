@@ -3,7 +3,15 @@
 <a href='/logout'>Logout</a>
 </div>
 <div class="container">
+  <br>
   <form action='/account_page/:id' method='post'>
-    <textarea rows="2" cols="20" name="morsel" placeholder="Give us a morsel!"></textarea>
+    <textarea rows="2" cols="20" name="morsel" placeholder="Give us a morsel!"></textarea><br><Br>
+    <input type="submit" value="Bake this sweet morsel!">
   </form>
+</div>
+<div class="container">
+  <h2>Your recent Morsels:</h2>
+    <% User.find(params[:id]).morsels.all.each do |morsel|%>
+    <li><%= morsel.sweet %> </li>
+    <% end %>
 </div>

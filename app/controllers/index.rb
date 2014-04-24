@@ -1,7 +1,7 @@
 get '/' do
   if session[:id]
-    @user = User.find(session[:id])
-    redirect "/account_page/#{@user.id}"
+    # @user = User.find(session[:id])
+    redirect "/account_page"
   else
     redirect '/login_or_signup'
   end
@@ -49,6 +49,7 @@ end
 post '/signup' do
   @user = User.create(params)
   if @user.valid?
+    session[:id] = @user.id
     redirect "/account_page/#{@user.id}"
   else
     redirect "/signup"
