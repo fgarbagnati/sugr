@@ -1,27 +1,51 @@
 get '/' do
-  # Look in app/views/index.erb
-  erb :index
+  if session[:id]
+    redirect "/account/#{@user.id}"
+  else
+    redirect '/loginorsignup'
+  end
 end
 
-get '/bands' do
-  @band_names = Band.all.map(&:name)
-  erb :bands
+get '/account/:id' do
+  if session[:id].to_s == params[:id].to_s
+    @user = User.find(params[:id])
+    erb :accountpage
+  else
+    redirect '/'
+  end
 end
 
-post '/bands' do
-  new_band = Band.create!(name: params[:name])
-  redirect "/bands/#{new_band.id}"
+get '/loginorsignup' do
+  erb :loginorsignup
 end
 
-get '/bands/new' do
-  erb :new_band
+get '/login' do
+  erb :login
 end
 
-get '/bands/:id' do
-  @band = Band.find(params[:id])
-  erb :show_band
+post '/login' do
+  @user = User.find_by_username(params[:username])
+  if @user == nil
+    redirect '/signup'
+  elsif @user.password == params[:password]
+    session[:id] = @user.id
+    redirect "/profilepage/#{@user.id}"
+  else
+    redirect '/signup'
+  end
 end
 
-get '/info' do
-  Demo.new(self).info
+get '/signup' do
+  erb :signup
 end
+
+post '/signup' do
+  User.create(params)
+  redirect '/account/:id'
+end
+
+get '/logout' do
+  session.clear
+  redirect '/'
+end
+
