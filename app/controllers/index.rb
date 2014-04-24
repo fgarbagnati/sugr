@@ -42,7 +42,11 @@ end
 
 post '/signup' do
   @user = User.create(params)
-  redirect "/account/#{@user.id}"
+  if @user.valid?
+    redirect "/account_page/#{@user.id}"
+  else
+    redirect "/signup"
+  end
 end
 
 get '/logout' do
