@@ -4,5 +4,6 @@ class CreateMorsels < ActiveRecord::Migration
       t.belongs_to :user
       t.string :sweet
       t.timestamps
+    end
   end
 end
