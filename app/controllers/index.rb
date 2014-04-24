@@ -16,6 +16,11 @@ get '/account_page/:id' do
   end
 end
 
+post '/account_page/:id' do
+  @user = User.find(params[:id])
+  @user.morsels.create(:sweet => params[:morsel])
+end
+
 get '/login_or_signup' do
   erb :login_or_signup
 end
