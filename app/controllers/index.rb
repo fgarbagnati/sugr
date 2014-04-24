@@ -17,7 +17,7 @@ get '/account_page/:id' do
 end
 
 get '/login_or_signup' do
-  erb :login_or_signup
+  erb :loginorsignup
 end
 
 get '/login' do

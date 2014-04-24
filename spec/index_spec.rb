@@ -13,10 +13,25 @@ describe "the index controller" do
     expect(last_response.location).to include 'account_page'
   end
 
-  # it "the login or signup path should render the login or signup erb template" do
-  #   get '/login_or_signup'
+  it "the login or signup path should render the login or signup erb template" do
+    get '/login_or_signup'
+    expect(last_response.status).to be(200)
+  end
+
+  it "the login route should successfully render the login erb template" do
+    get '/login'
+    expect(last_response.status).to be(200)
+  end
+
+  it "the signup route should successfully render the signup erb template" do
+    get '/signup'
+    expect(last_response.status).to be(200)
+  end
+
+  # it "posting within the signup page should redirect to the user's account page" do
+  #   post '/signup', # params = { :username => "dude", :password => "pwd"}
   #   p last_response
-  #   expect(last_response).to be(200)
+  #   # expect(last_response.location).to include 'account'
   # end
 
 end
