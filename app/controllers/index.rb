@@ -10,7 +10,16 @@ end
 get '/account_page/:id' do
   if session[:id].to_s == params[:id].to_s
     @user = User.find(params[:id])
-    # @profile = User.find(params[:id])
+    list_of_followers = Follower.following(@user.id)
+    followers = []
+    list_of_followers.each do |follow|
+      followers << follow.followed_id
+    end
+
+    @morsels = []
+    followers.each do |id|
+      @morsels << Morsel.where(:user_id => id)
+    end
     erb :account_page
   else
     redirect '/'
@@ -20,6 +29,10 @@ end
 post '/account_page/:id' do
   @user = User.find(params[:id])
   @user.morsels.create(:sweet => params[:morsel])
+
+
+
+
   redirect "/account_page/#{params[:id]}"
 end
 
@@ -75,18 +88,17 @@ get '/follows/:user' do
   @logged_in_user = User.find(session[:id])
   @profile_user = User.find_by_username(params[:user])
 
-@followers2 = Follower.where(:follows_id => @profile_user.id)
+  @followers2 = Follower.where(:follows_id => @profile_user.id)
   @users2 = []
   @followers2.each do |follower|
     @users2 << User.find(follower.followed_id)
   end
 
- @followers = Follower.where(:followed_id => @profile_user.id)
+  @followers = Follower.where(:followed_id => @profile_user.id)
   @users = []
   @followers.each do |follower|
     @users << User.find(follower.follows_id)
   end
-
 
   erb :follows
 end

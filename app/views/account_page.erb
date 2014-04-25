@@ -1,18 +1,33 @@
 <div class="container">
 
   <a href='/user/<%= @user.username %>'>Profile</a>
-<p>This should be the account page of <%= @user.username %></p><br>
-  <br>
-<h1>Welcome to your kitchen, <%= @user.username %>!</h1><br>
+  <h1>Welcome to your kitchen, <%= @user.username %>!</h1><br>
   <div class="makemorsel">
 
-  <form action='/account_page/<%= @user.id %>' method='post'>
-    <textarea rows="2" cols="20" name="morsel" placeholder="Give us a morsel!" maxlength="140"></textarea><br><Br>
-    <input type="submit" value="Bake this sweet morsel!">
-  </form><br>
+    <form action='/account_page/<%= @user.id %>' method='post'>
+      <textarea rows="2" cols="20" name="morsel" placeholder="Give us a morsel!" maxlength="140"></textarea><br><Br>
+      <input type="submit" value="Bake this sweet morsel!">
+    </form><br>
   </div>
   <h2>Your recent Morsels:</h2>
-    <% User.find(params[:id]).morsels.all.each do |morsel|%>
-    <li><%= morsel.sweet %> </li>
-    <% end %>
+  <% User.find(params[:id]).morsels.order("created_at DESC").all.each do |morsel|%>
+  <li style="list-style-type:none">"<%= morsel.sweet %>"</li>
+  <% end %>
+
+  <h2>See what these chefs are baking!</h2>
+  <% users = User.all.shuffle %>
+  <% list_of_users = users.shift(10) %>
+  <% list_of_users.each do |user| %>
+  <li style="list-style-type:none"><a href='/user/<%= user.username %>'><%= user.username %></a>  </li>
+  <% end %>
+
+  <h2>What your favorite chefs are baking</h2>
+  <% @morsels.flatten.each do |morsel| %>
+  <% username = User.find(morsel.user_id).username %>
+  <li style="list-style-type:none">"<%=morsel.sweet%>"
+    <br><a href='/user/<%=username%>'><%= username %></a>
+    <br>Baked <%= ((Time.now - morsel.created_at)/60).floor %> minutes ago
+  </li><br>
+  <% end %>
+
 </div>
