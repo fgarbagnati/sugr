@@ -20,9 +20,11 @@
 <body>
   <% if session[:id] %>
     <div class="container">
-      <a href='/logout'>Logout</a>
+      <a href='/logout'>Logout</a> |
+      <a href='/account_page/<%= session[:id] %>'>Home</a>
     </div>
   <% end %>
+
   <%= yield %>
 </body>
 </html>
