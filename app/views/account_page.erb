@@ -1,6 +1,15 @@
+<div class="sidebar">
+  <h2>See what these chefs are baking!</h2>
+    <% users = User.all.shuffle %>
+    <% list_of_users = users.shift(10) %>
+    <% list_of_users.each do |user| %>
+    <li><a href='/user/<%= user.username %>'><%= user.username %></a>  </li><br>
+    <% end %>
+</div>
+
 <div class="container">
 
-  <a href='/user/<%= @user.username %>'>Profile</a>
+  <div class="links"><a href='/user/<%= @user.username %>'>Profile</a></div>
   <h1>Welcome to your kitchen, <%= @user.username %>!</h1><br>
   <div class="makemorsel">
 

@@ -9,6 +9,38 @@
   font-family: serif;
 }
 
+.sidebar {
+  float: left;
+  width: 13%;
+  margin: 20;
+  padding: 10px;
+  text-align: right;
+  font-weight: bold;
+  color:purple ;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #dbdbdb;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #cc0066;
+}
+.sidebar a:visited {
+  color: #7a003d;
+}
+.sidebar li {
+  list-style-type: none;
+}
+
+.links {
+  text-transform: uppercase;
+  background-color: white;
+  width: 150px;
+  margin: 0px auto;
+  border-radius: 20px;
+}
+
 .signuplink {
   text-transform: uppercase;
   background-color: white;
@@ -54,6 +86,10 @@
 
 .logout {
   background-color: white;
+  font-family: serif;
+  width: 150px;
+  margin: 0px auto;
+  border-radius: 20px;
 }
 
 .homepage {
