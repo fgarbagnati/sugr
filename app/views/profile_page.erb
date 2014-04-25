@@ -1,4 +1,5 @@
 <div class="container">
+  <img src="<%= User.fetch_gravatar(params[:id])%>" alt="gravatar avatar">
   <h1> <%= @user.username %>'s Page </h1>
   <% @sweets.each do |sweet| %>
   <li><%= sweet.sweet %><p>Created <%= ((Time.now - sweet.created_at)/60).floor %> minutes ago</p></li>
