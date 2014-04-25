@@ -28,11 +28,11 @@ describe "the index controller" do
     expect(last_response.status).to be(200)
   end
 
-  # it "posting within the signup page should redirect to the user's account page" do
-  #   post '/signup', # params = { :username => "dude", :password => "pwd"}
-  #   p last_response
-  #   # expect(last_response.location).to include 'account'
-  # end
+  it "posting within the signup page should redirect to the user's account page" do
+    post '/signup' # params = { :username => "dude", :password => "pwd"}
+    # p last_response
+    expect(last_response.location).to include 'account'
+  end
 
 end
 
