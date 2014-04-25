@@ -1,10 +1,10 @@
 <div class="container">
-
   <div>
-    <a href='/follows'>Follows/Following</a>
+    <a href='/follows/<%= @user.username %>'>Follows/Following</a>
   </div>
 
-  <img src="<%= User.fetch_gravatar(params[:id])%>" alt="gravatar avatar">
+<img src="<%=  User.fetch_gravatar(@user.id) %>" alt="gravatar avatar">
+
 
   <h1> <%= @user.username %>'s Page </h1>
   <form action='/follow/<%= @user.username %>' method='post'>
