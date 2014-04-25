@@ -3,12 +3,5 @@
   <div class="cupcake"><img src="http://thumb1.shutterstock.com/thumb_small/625348/625348,1331681023,40/stock-vector-creamy-cup-cake-with-delicious-berry-hand-drawing-sketch-vector-icon-98187260.jpg" alt="Small cupcake"></div><br>
   <div class="loginlink"><h2><a href='/login'>Log in</a></h2></div>
   <div class="signuplink"><h2><a href='/signup'>Sign up</a></h2></div><br>
-  <h2><strong>Morsels fresh out of the oven</strong></h2>
-  <% @sweets.each do |sweet| %>
-  <li> <h2><a href="/user/<%= sweet.user.username %>" /><%= sweet.user.username %></a></h2>
-    <h5> Baked <%= ((Time.now - sweet.created_at)/60).floor%> minutes ago</h5>
-    <p><%= sweet.sweet.capitalize %> </p>
-
-  <% end %>
 </div>
 
