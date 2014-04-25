@@ -10,6 +10,7 @@ end
 get '/account_page/:id' do
   if session[:id].to_s == params[:id].to_s
     @user = User.find(params[:id])
+    # @profile = User.find(params[:id])
     erb :account_page
   else
     redirect '/'
@@ -20,6 +21,16 @@ post '/account_page/:id' do
   @user = User.find(params[:id])
   @user.morsels.create(:sweet => params[:morsel])
   redirect "/account_page/#{params[:id]}"
+end
+
+post '/follow/:user' do
+  p "THESE ARE THE PARAMS: "
+  p params[:user]
+  @user = User.find(session[:id])
+  @profile = User.find_by_username(params[:user])
+  p @profile
+  Follower.create(:follows_id => @user.id, :followed_id => @profile.id)
+  redirect "/user/#{@profile.username}"
 end
 
 get '/login_or_signup' do
@@ -62,3 +73,7 @@ get '/logout' do
   redirect '/'
 end
 
+get '/follows' do
+
+  erb :follows
+end
