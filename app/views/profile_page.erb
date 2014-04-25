@@ -1,0 +1,8 @@
+<div class="container">
+  <h1> <%= @user.username %>'s Page </h1>
+  <% @sweets.each do |sweet| %>
+  <li><%= sweet.sweet %><p>Created <%= ((Time.now - sweet.created_at)/60).floor %> minutes ago</p></li>
+  <% end %>
+
+
+</div>

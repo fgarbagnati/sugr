@@ -1,6 +1,11 @@
 <div class="container">
+
+  <a href='/user/<%= @user.username %>'>Profile</a>
+<p>This should be the account page of <%= @user.username %></p><br>
+  <br>
 <h1>Welcome to your kitchen, <%= @user.username %>!</h1><br>
   <div class="makemorsel">
+
   <form action='/account_page/<%= @user.id %>' method='post'>
     <textarea rows="2" cols="20" name="morsel" placeholder="Give us a morsel!"></textarea><br><Br>
     <input type="submit" value="Bake this sweet morsel!">
