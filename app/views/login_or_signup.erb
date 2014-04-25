@@ -1,5 +1,11 @@
 <div class="container">
   <a href='/login'>Log in</a><br>
   <a href='/signup'>Sign up</a>
+
+  <% @sweets.each do |sweet| %>
+  <li> <h2><%= sweet.user.username %></h2>
+    <h5> created <%= ((Time.now - sweet.created_at)/60).floor%> minutes ago</h5>
+    <h4> <%= sweet.sweet %> </h4></li>
+  <% end %>
 </div>
 
