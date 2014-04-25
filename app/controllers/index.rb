@@ -19,6 +19,7 @@ end
 post '/account_page/:id' do
   @user = User.find(params[:id])
   @user.morsels.create(:sweet => params[:morsel])
+  redirect "/account_page/#{params[:id]}"
 end
 
 get '/login_or_signup' do

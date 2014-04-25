@@ -1,10 +1,10 @@
 <div class="container">
 <p>This should be the account page of <%= @user.username %></p><br>
-<a href='/logout'>Logout</a>
+<!-- <a href='/logout'>Logout</a> -->
 </div>
 <div class="container">
   <br>
-  <form action='/account_page/:id' method='post'>
+  <form action='/account_page/<%= @user.id %>' method='post'>
     <textarea rows="2" cols="20" name="morsel" placeholder="Give us a morsel!"></textarea><br><Br>
     <input type="submit" value="Bake this sweet morsel!">
   </form>
