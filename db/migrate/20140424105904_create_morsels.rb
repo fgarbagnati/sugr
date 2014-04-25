@@ -2,7 +2,7 @@ class CreateMorsels < ActiveRecord::Migration
   def change
     create_table :morsels do |t|
       t.belongs_to :user
-      t.string(140) :sweet
+      t.string :sweet, :limit => 140
       t.timestamps
     end
   end
