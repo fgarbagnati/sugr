@@ -3,7 +3,7 @@
     <a href='/follows/<%= @user.username %>'>Follows/Following</a>
   </div>
 
-<img src="<%=  User.fetch_gravatar(@user.id) %>" alt="gravatar avatar">
+  <img src="<%=  User.fetch_gravatar(@user.id) %>" alt="gravatar avatar">
 
 
   <h1> <%= @user.username %>'s Page </h1>
@@ -13,10 +13,6 @@
   <br>
   <% @sweets.each do |sweet| %>
   <%= sweet.sweet %>
-    <p>Created <%= ((Time.now - sweet.created_at)/60).floor %> minutes ago</p>
+  <p>Created <%= ((Time.now - sweet.created_at)/60).floor %> minutes ago</p>
   <% end %>
-
-
-
-
 </div>

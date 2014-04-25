@@ -1,14 +1,14 @@
 <h1><%= @profile_user.username %></h1>
- <p>Following:</p><br>
- <ul>
+<p>Following:</p><br>
+<ul>
  <% @users2.each do |follower|  %>
-   <li><a href='/user/<%=follower.username%>'><%= follower.username %></a></li>
-<% end %>
+ <li><a href='/user/<%=follower.username%>'><%= follower.username %></a></li>
+ <% end %>
 </ul>
 
 <p>Followers:</p><br>
 <ul>
-<% @users.each do |follower|  %>
+  <% @users.each do |follower|  %>
   <li><a href='/user/<%=follower.username%>'><%= follower.username %></a></li>
-<% end %>
+  <% end %>
 </ul>
