@@ -24,12 +24,10 @@ post '/account_page/:id' do
 end
 
 post '/follow/:user' do
-  p "THESE ARE THE PARAMS: "
-  p params[:user]
-  @user = User.find(session[:id])
+  @logged_in_user = User.find(session[:id])
   @profile = User.find_by_username(params[:user])
   p @profile
-  Follower.create(:follows_id => @user.id, :followed_id => @profile.id)
+  Follower.create(:follows_id => @logged_in_user.id, :followed_id => @profile.id)
   redirect "/user/#{@profile.username}"
 end
 
@@ -73,7 +71,26 @@ get '/logout' do
   redirect '/'
 end
 
-get '/follows' do
+get '/follows/:user' do
+  @logged_in_user = User.find(session[:id])
+  @profile_user = User.find_by_username(params[:user])
+
+@followers2 = Follower.where(:follows_id => @profile_user.id)
+  @users2 = []
+  @followers2.each do |follower|
+    @users2 << User.find(follower.followed_id)
+  end
+
+ @followers = Follower.where(:followed_id => @profile_user.id)
+  @users = []
+  @followers.each do |follower|
+    @users << User.find(follower.follows_id)
+  end
+
 
   erb :follows
 end
+
+
+
+

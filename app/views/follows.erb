@@ -1,2 +1,14 @@
-<h1>WOOOOOOYAYAYAYTHISAISSOAWESOME</h1>
-<h1 style="font-size: 50">SWEETZ 4 LYFE</h1>
+<h1><%= @profile_user.username %></h1>
+ <p>Following:</p><br>
+ <ul>
+ <% @users2.each do |follower|  %>
+   <li><a href='/user/<%=follower.username%>'><%= follower.username %></a></li>
+<% end %>
+</ul>
+
+<p>Followers:</p><br>
+<ul>
+<% @users.each do |follower|  %>
+  <li><a href='/user/<%=follower.username%>'><%= follower.username %></a></li>
+<% end %>
+</ul>
