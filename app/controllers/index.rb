@@ -24,12 +24,11 @@ post '/account_page/:id' do
 end
 
 post '/follow/:user' do
-  p "THESE ARE THE PARAMS: "
-  p params[:user]
   @user = User.find(session[:id])
   @profile = User.find_by_username(params[:user])
-  p @profile
+
   Follower.create(:follows_id => @user.id, :followed_id => @profile.id)
+  @follower = Follower.follower(@user)
   redirect "/user/#{@profile.username}"
 end
 
